@@ -80,6 +80,7 @@ class GamePage(tk.Frame):
                 cell.unbind("<Button-3>")
         self.btn_game.config(bg=mg.colors_difficult[2])
         self.top_frame.config(bg=mg.colors_difficult[2])
+        mg.set_statistic(self.time_elapsed,False)
 
     def game_win(self):
         if self.time_update_id:
@@ -95,6 +96,7 @@ class GamePage(tk.Frame):
                 cell.unbind("<Button-3>")
         self.btn_game.config(bg=mg.colors_difficult[0])
         self.top_frame.config(bg=mg.colors_difficult[0])
+        mg.set_statistic(self.time_elapsed,True)
 
     def update_empty_count(self):
         self.empty_count += -1
@@ -107,7 +109,7 @@ class GamePage(tk.Frame):
         if row-1>=0:
             if column-1>=0:
                 if str(self.cells[row-1][column-1].cget('image'))==str(self.flag_img):
-                    print("ok")
+
                     s+=1
             if str(self.cells[row-1][column].cget('image'))==str(self.flag_img):
                 s+=1

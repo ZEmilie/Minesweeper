@@ -24,8 +24,31 @@ class StatisticPage(tk.Frame):
         self.btn_setting.pack(side=tk.LEFT, padx=10, pady=5)
 
         # Page content
-        label = tk.Label(self, text="Bienvenue dans le jeu Démineur!", font=("Helvetica", 16))
-        label.pack(pady=10)
+        self.frame_statistic = tk.Frame(self, bg=mg.bg)
+        self.frame_statistic.pack(pady=20)
+
+        self.images_difficult = mg.img_difficult
+        self.textes_difficult = [
+            "Débutant", "Intermédiaire", "Avancé"
+        ]
+        for i in range(3):
+            image_level = tk.Label(self.frame_statistic, image=self.images_difficult[i],
+                                   bg=mg.bg, width=250, height=150)
+            image_level.grid(row=0, column=i, sticky="nsew")
+            label_level = tk.Label(self.frame_statistic, text=self.textes_difficult[i],
+                                   font=("Arial Bold", 20), bg=mg.bg, fg=mg.colors_difficult[i])
+            label_level.grid(row=1, column=i, sticky="nsew", pady=20)
+            best_time, n_win, n_lose = mg.get_statistic(i)
+            label_win = tk.Label(self.frame_statistic, text=f"Partie gagnée : {n_win}",
+                                   font=("Arial", 16), bg=mg.bg, fg=mg.colors_difficult[i])
+            label_win.grid(row=2, column=i, sticky="nsew")
+            label_lose = tk.Label(self.frame_statistic, text=f"Partie perdue : {n_lose}",
+                                   font=("Arial", 16), bg=mg.bg, fg=mg.colors_difficult[i])
+            label_lose.grid(row=3, column=i, sticky="nsew")
+            label_time = tk.Label(self.frame_statistic, text=f"Meilleur temps : {best_time}",
+                                   font=("Arial", 16), bg=mg.bg, fg=mg.colors_difficult[i])
+            label_time.grid(row=4, column=i, sticky="nsew")
+
 
     def home(self):
         self.controller.show_page("home")

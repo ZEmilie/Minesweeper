@@ -41,6 +41,7 @@ game_data = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..\data')
 if not os.path.exists(game_data):
     os.makedirs(game_data)
 
+difficult_name = ["easy", "medium", "hard"]
 wlm_difficult = [[9,9,10], [16,16,40], [30,16,99]]
 
 def set_difficult(value):
@@ -86,3 +87,29 @@ def get_wlm_final():
     else:
         w,l,m = wlm_difficult[value]
     return w,l,m
+
+def get_statistic(level):
+    if level!=3:
+        try:
+            with open(os.path.join(game_data, f"{difficult_name[level]}.json"), "r") as file:
+                data = json.load(file)
+                best_time = data.get("time")
+                n_win = data.get("win")
+                n_lose = data.get("lose")
+                return best_time, n_win, n_lose
+        except FileNotFoundError:
+            return None, 0, 0
+
+def set_statistic(time,win):
+    level = get_difficult()
+    if level!=3:
+        best_time, n_win, n_lose = get_statistic(level)
+        if win:
+            n_win = int(n_win)+1
+            if best_time is None or int(best_time)>time:
+                best_time = time
+        else:
+            n_lose = int(n_lose)+1
+        data = {"time": best_time, "win": n_win, "lose": n_lose}
+        with open(os.path.join(game_data, f"{difficult_name[level]}.json"), "w") as file:
+            json.dump(data, file)

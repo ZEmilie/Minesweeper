@@ -38,6 +38,8 @@ class Application(tk.Tk):
         self.protocol("WM_DELETE_WINDOW", self.stop_app)
 
     def show_page(self, page_name):
+        if page_name=="statistic":
+            self.refresh_statistic_page()
         # Hide all pages
         for page in self.pages.values():
             page.grid_remove()
@@ -50,6 +52,9 @@ class Application(tk.Tk):
         self.pages["game"].destroy()
         self.pages["game"] = GamePage(self.container, self, "Démineur")
 
+    def refresh_statistic_page(self):
+        self.pages["statistic"].destroy()
+        self.pages["statistic"] = StatisticPage(self.container, self, "Statistiques")
     
     def stop_app(self):
         self.destroy()
