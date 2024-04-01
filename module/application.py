@@ -11,42 +11,45 @@ class Application(tk.Tk):
         self.title("Démineur")
         screen_width = self.winfo_screenwidth()
         screen_height = self.winfo_screenheight()
-        window_width = 400
-        window_height = 450
+        window_width = 800
+        window_height = 575
         x = (screen_width - window_width) // 2
         y = (screen_height - window_height - 100) // 2
         self.geometry(f"{window_width}x{window_height}+{x}+{y}")
 
-        # Créer un cadre pour afficher le contenu des différentes pages
+        # Create a frame to display the content of different pages
         self.container = tk.Frame(self)
         self.container.pack(expand=True, fill="both")
 
-        # Configurer les options pour centrer le cadre dans la fenêtre principale
+        # Configure the options for centring the frame in the main window
         self.container.grid_rowconfigure(0, weight=1)
         self.container.grid_columnconfigure(0, weight=1)
 
-        # Dictionnaire pour stocker les instances des différentes pages
+        # Dictionary for storing instances of different pages
         self.pages = {}
         self.pages["home"] = HomePage(self.container, self, "Démineur")
         self.pages["setting"] = SettingPage(self.container, self, "Paramètres")
         self.pages["game"] = GamePage(self.container, self, "Démineur")
         self.pages["statistic"] = StatisticPage(self.container, self, "Statistiques")
 
-        # Afficher la page d'accueil au démarrage
+        # Display home page at startup
         self.show_page("home")
 
         self.protocol("WM_DELETE_WINDOW", self.stop_app)
 
     def show_page(self, page_name):
-        # Masquer toutes les pages
+        # Hide all pages
         for page in self.pages.values():
             page.grid_remove()
-
-        # Afficher la page demandée
+        # Display the requested page
         self.pages[page_name].grid(row=0, column=0, sticky="nsew")
-        
-        # Changer le titre de la fenêtre principale
+        # Change the title of the main window
         self.title(self.pages[page_name].title)
+    
+    def refresh_game_page(self):
+        self.pages["game"].destroy()
+        self.pages["game"] = GamePage(self.container, self, "Démineur")
+
     
     def stop_app(self):
         self.destroy()

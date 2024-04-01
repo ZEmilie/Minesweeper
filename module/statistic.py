@@ -1,29 +1,29 @@
 import tkinter as tk
 import os
 
-from module.home import img, bg, settings_difficult, n_bg, game_data
+import module.management as mg
 
 class StatisticPage(tk.Frame):
     def __init__(self, parent, controller, title):
         super().__init__(parent)
         self.controller = controller
         self.title = title
-        self.config(bg=bg)
+        self.config(bg=mg.bg)
 
-        # Créer la barre
-        self.barre = tk.Frame(self, bg=n_bg)
+        # Menu bar
+        self.barre = tk.Frame(self, bg=mg.n_bg)
         self.barre.pack(side=tk.TOP, fill=tk.X)
-        self.home_img = tk.PhotoImage(file=os.path.join(img, "home.png")).subsample(2)
-        self.btn_home = tk.Button(self.barre, image=self.home_img, bd=0, command=self.home, bg=n_bg)
+        self.home_img = mg.img_home.subsample(2)
+        self.btn_home = tk.Button(self.barre, image=self.home_img, bd=0, command=self.home, bg=mg.n_bg)
         self.btn_home.pack(side=tk.LEFT, padx=10, pady=5)
-        self.game_img = tk.PhotoImage(file=os.path.join(img, "game.png")).subsample(2)
-        self.btn_game = tk.Button(self.barre, image=self.game_img, bd=0, command=self.game, bg=n_bg)
+        self.game_img = mg.img_game.subsample(2)
+        self.btn_game = tk.Button(self.barre, image=self.game_img, bd=0, command=self.game, bg=mg.n_bg)
         self.btn_game.pack(side=tk.LEFT, padx=10, pady=5)
-        self.setting_img = tk.PhotoImage(file=os.path.join(img, "engrenage.png")).subsample(2)
-        self.btn_setting = tk.Button(self.barre, image=self.setting_img, bd=0, command=self.setting, bg=n_bg)
+        self.setting_img = mg.img_setting.subsample(2)
+        self.btn_setting = tk.Button(self.barre, image=self.setting_img, bd=0, command=self.setting, bg=mg.n_bg)
         self.btn_setting.pack(side=tk.LEFT, padx=10, pady=5)
 
-        # Créer le contenu de la page du jeu
+        # Page content
         label = tk.Label(self, text="Bienvenue dans le jeu Démineur!", font=("Helvetica", 16))
         label.pack(pady=10)
 
