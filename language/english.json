@@ -1,0 +1,16 @@
+{"game_title": "Minesweeper",
+ "setting_title": "Setting",
+ "statistic_title": "Statistic",
+ "confirm_title": "Confirmation",
+ "confirm_message": ["Do you want to confirm your choice and restart the application?", "Yes", "No"],
+ "game": "Play",
+ "new_game": "New game",
+ "validate": "Validate",
+ "game_win": "Games won",
+ "game_lose": "Games lost",
+ "best_time": "Best time",
+ "time": "Time",
+ "mines": "Mines",
+ "texts_difficult": ["Beginner", "Intermediate", "Advanced", "Custom"],
+ "size": ["Width", "Length", "Mines"]
+}

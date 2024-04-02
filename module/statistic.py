@@ -1,13 +1,13 @@
 import tkinter as tk
-import os
 
 import module.management as mg
+import module.text as tt
 
 class StatisticPage(tk.Frame):
-    def __init__(self, parent, controller, title):
+    def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.title = title
+        self.title = tt.statistic_title
         self.config(bg=mg.bg)
 
         # Menu bar
@@ -24,28 +24,28 @@ class StatisticPage(tk.Frame):
         self.btn_setting.pack(side=tk.LEFT, padx=10, pady=5)
 
         # Page content
+        label = tk.Label(self, text=tt.statistic_title, font=("Arial Bold", 26), bg=mg.bg)
+        label.pack(pady=40)
+
         self.frame_statistic = tk.Frame(self, bg=mg.bg)
-        self.frame_statistic.pack(pady=20)
+        self.frame_statistic.pack()
 
         self.images_difficult = mg.img_difficult
-        self.textes_difficult = [
-            "Débutant", "Intermédiaire", "Avancé"
-        ]
         for i in range(3):
             image_level = tk.Label(self.frame_statistic, image=self.images_difficult[i],
-                                   bg=mg.bg, width=250, height=150)
+                                   bg=mg.bg, width=250, height=100)
             image_level.grid(row=0, column=i, sticky="nsew")
-            label_level = tk.Label(self.frame_statistic, text=self.textes_difficult[i],
+            label_level = tk.Label(self.frame_statistic, text=tt.texts_difficult[i],
                                    font=("Arial Bold", 20), bg=mg.bg, fg=mg.colors_difficult[i])
             label_level.grid(row=1, column=i, sticky="nsew", pady=20)
             best_time, n_win, n_lose = mg.get_statistic(i)
-            label_win = tk.Label(self.frame_statistic, text=f"Partie gagnée : {n_win}",
+            label_win = tk.Label(self.frame_statistic, text=f"{tt.game_win} : {n_win}",
                                    font=("Arial", 16), bg=mg.bg, fg=mg.colors_difficult[i])
             label_win.grid(row=2, column=i, sticky="nsew")
-            label_lose = tk.Label(self.frame_statistic, text=f"Partie perdue : {n_lose}",
+            label_lose = tk.Label(self.frame_statistic, text=f"{tt.game_lose} : {n_lose}",
                                    font=("Arial", 16), bg=mg.bg, fg=mg.colors_difficult[i])
             label_lose.grid(row=3, column=i, sticky="nsew")
-            label_time = tk.Label(self.frame_statistic, text=f"Meilleur temps : {best_time}",
+            label_time = tk.Label(self.frame_statistic, text=f"{tt.best_time} : {best_time}",
                                    font=("Arial", 16), bg=mg.bg, fg=mg.colors_difficult[i])
             label_time.grid(row=4, column=i, sticky="nsew")
 

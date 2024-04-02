@@ -1,19 +1,19 @@
 import tkinter as tk
 
 import module.management as mg
-from module.game import GamePage
+import module.text as tt
 
 class HomePage(tk.Frame):
-    def __init__(self, parent, controller, title):
+    def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.title = title
+        self.title = tt.game_title
         self.config(bg=mg.bg)
         self.place(relx=0.5, rely=0.5, anchor="center")
         mg.init_img()
 
         # Page content
-        label = tk.Label(self, text="Démineur", font=("Arial Bold", 26), bg=mg.bg)
+        label = tk.Label(self, text=tt.game_title, font=("Arial Bold", 26), bg=mg.bg)
         label.pack(expand=True)
 
         # Image and text according to level
@@ -21,10 +21,7 @@ class HomePage(tk.Frame):
         self.image_difficult.pack(expand=True)
         self.images_difficult = mg.img_difficult
         self.image_difficult.config(image=self.images_difficult[0], bg=mg.bg)
-        self.textes_difficult = [
-            "Débutant", "Intermédiaire", "Avancé", "Personnalisé"
-        ]
-        self.label_difficult = tk.Label(self, text=self.textes_difficult[0], font=("Arial Bold", 20),
+        self.label_difficult = tk.Label(self, text=tt.texts_difficult[0], font=("Arial Bold", 20),
                                         bg=mg.bg, fg=mg.colors_difficult[0])
         self.label_difficult.pack(expand=True)
 
@@ -40,7 +37,7 @@ class HomePage(tk.Frame):
 
         self.width_frame = tk.Frame(self.setting_frame, bg=mg.bg)
         self.width_frame.pack(fill="x")
-        self.width_label = tk.Label(self.width_frame, text="Largeur :", bg=mg.bg, width=10, height=2)
+        self.width_label = tk.Label(self.width_frame, text=f"{tt.size[0]} :", bg=mg.bg, width=10, height=2)
         self.width_label.pack(side="left", padx=2, pady=2)
         self.width_value = tk.StringVar(self)
         self.width_value.set(mg.wlm_difficult[0][0])
@@ -51,7 +48,7 @@ class HomePage(tk.Frame):
 
         self.length_frame = tk.Frame(self.setting_frame, bg=mg.bg)
         self.length_frame.pack(fill="x")
-        self.length_label = tk.Label(self.length_frame, text="Longueur :", bg=mg.bg, width=10, height=2)
+        self.length_label = tk.Label(self.length_frame, text=f"{tt.size[1]} :", bg=mg.bg, width=10, height=2)
         self.length_label.pack(side="left", padx=2, pady=2)
         self.length_value = tk.StringVar(self)
         self.length_value.set(mg.wlm_difficult[0][1])
@@ -62,7 +59,7 @@ class HomePage(tk.Frame):
 
         self.mine_frame = tk.Frame(self.setting_frame, bg=mg.bg)
         self.mine_frame.pack(fill="x")
-        self.mine_label = tk.Label(self.mine_frame, text="Mines :", bg=mg.bg, width=10, height=2)
+        self.mine_label = tk.Label(self.mine_frame, text=f"{tt.size[2]} :", bg=mg.bg, width=10, height=2)
         self.mine_label.pack(side="left", padx=2, pady=2)
         self.mine_value = tk.StringVar(self)
         self.mine_value.set(mg.wlm_difficult[0][2])
@@ -81,7 +78,7 @@ class HomePage(tk.Frame):
                                        command=self.statistic, bg=mg.bg)
         self.btn_statistic.pack(side="left", padx=10)
 
-        self.btn_game = tk.Button(self.button_frame, text="Jouer", command=self.game)
+        self.btn_game = tk.Button(self.button_frame, text=tt.game, command=self.game)
         self.btn_game.config(width=10, height=2,
                              font=("Arial Bold", 12), relief=tk.RAISED,
                              fg="white", bg=mg.colors_difficult[0])
@@ -116,7 +113,7 @@ class HomePage(tk.Frame):
     def update_difficult(self):
         value = self.slider.get()
         self.image_difficult.config(image=self.images_difficult[value])
-        self.label_difficult.config(text=self.textes_difficult[value], fg=mg.colors_difficult[value])
+        self.label_difficult.config(text=tt.texts_difficult[value], fg=mg.colors_difficult[value])
         self.slider.config(bg=mg.colors_difficult[value])
         self.btn_game.config(bg=mg.colors_difficult[value])
         if value==3:

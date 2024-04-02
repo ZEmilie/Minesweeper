@@ -1,0 +1,16 @@
+{"game_title": "Démineur",
+ "setting_title": "Paramètre",
+ "statistic_title": "Statistique",
+ "confirm_title": "Confirmation",
+ "confirm_message": ["Voulez-vous confirmer votre choix et redémarrer l'application ?", "Oui", "Non"],
+ "game": "Jouer",
+ "new_game": "Nouvelle partie",
+ "validate": "Valider",
+ "game_win": "Parties gagnées",
+ "game_lose": "Parties perdues",
+ "best_time": "Meilleur temps",
+ "time": "Temps",
+ "mines": "Mines",
+ "texts_difficult": ["Débutant", "Intermédiaire", "Avancé", "Personnalisé"],
+ "size": ["Largeur", "Longueur", "Mines"]
+}

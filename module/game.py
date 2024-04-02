@@ -2,12 +2,13 @@ import tkinter as tk
 
 import module.management as mg
 import module.calculate as calculate
+import module.text as tt
 
 class GamePage(tk.Frame):
-    def __init__(self, parent, controller, title):
+    def __init__(self, parent, controller):
         super().__init__(parent)
         self.controller = controller
-        self.title = title
+        self.title = tt.game_title
         self.config(bg=mg.bg)
         self.w, self.l, self.m = mg.get_wlm_final()
 
@@ -26,34 +27,36 @@ class GamePage(tk.Frame):
 
         # Page content
         self.top_frame = tk.Frame(self, bg=mg.bg_board)
-        self.top_frame.pack()
+        self.top_frame.pack(pady=10)
         self.time_elapsed = 0
         self.mines_count = self.m
         self.empty_count = self.w*self.l-self.m
-        self.time_label = tk.Label(self.top_frame, text=f"Time: {self.time_elapsed} s", bg=mg.bg, relief=tk.RAISED, width=10, height=2)
+        self.time_label = tk.Label(self.top_frame, text=f"{tt.time}: {self.time_elapsed} s",
+                                   bg=mg.bg, relief=tk.RAISED, width=10, height=2)
         self.time_label.pack(side=tk.LEFT, padx=10, pady=5)
         self.update_time()
-        self.mines_label = tk.Label(self.top_frame, text=f"Mines: {self.mines_count}", bg=mg.bg, relief=tk.RAISED, width=10, height=2)
+        self.mines_label = tk.Label(self.top_frame, text=f"{tt.mines}: {self.mines_count}",
+                                    bg=mg.bg, relief=tk.RAISED, width=10, height=2)
         self.mines_label.pack(side=tk.RIGHT, padx=10, pady=5)
 
         self.bomb_img = mg.img_bomb.subsample(4)
         self.flag_img = mg.img_flag.subsample(4)
         self.bang_img = mg.img_bang.subsample(4)
         self.create_game_board()
-        self.btn_game = tk.Button(self, text="Nouvelle partie", command=self.new_game)
+        self.btn_game = tk.Button(self, text=tt.new_game, command=self.new_game)
         self.btn_game.config(width=15, height=2, font=("Arial Bold", 12), relief=tk.RAISED,
                              fg="white", bg=mg.n_bg)
-        self.btn_game.pack()
+        self.btn_game.pack(pady=20)
 
 
     def update_time(self):
         self.time_elapsed += 1
-        self.time_label.config(text="Time: {} s".format(self.time_elapsed))
+        self.time_label.config(text=f"{tt.time}: {self.time_elapsed} s")
         self.time_update_id = self.after(1000, self.update_time)
 
     def create_game_board(self):
         self.game_board = tk.Frame(self, bg="white", width=300, height=300)
-        self.game_board.pack(pady=20)
+        self.game_board.pack()
         self.cells = []
         for i in range(self.l):
             row_cells = []
@@ -207,12 +210,12 @@ class GamePage(tk.Frame):
             cell = self.game_board.grid_slaves(row=row, column=column)[0]
             cell.config(bg=mg.bg, image=self.flag_img, relief=tk.FLAT, width=15, height=15)
             self.mines_count += -1
-            self.mines_label.config(text=f"Mines: {self.mines_count}")
+            self.mines_label.config(text=f"{tt.mines}: {self.mines_count}")
         elif w==15:
             cell = self.game_board.grid_slaves(row=row, column=column)[0]
             cell.config(image='', bg=mg.bg_board, relief=tk.RAISED, width=2, height=1)
             self.mines_count += 1
-            self.mines_label.config(text=f"Mines: {self.mines_count}")
+            self.mines_label.config(text=f"{tt.mines}: {self.mines_count}")
 
     def home(self):
         self.controller.show_page("home")
