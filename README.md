@@ -1,6 +1,7 @@
 # Minesweeper
 
-Small application with Tkinter in Python for playing minesweeper.
+Small application with Tkinter in Python for playing minesweeper.  
+This have been made with `python 3.11.1` and `tkinter 8.6`
 
 ## Presentation of the application
 
