@@ -32,7 +32,7 @@ The application is renewed with the chosen language. The language value is also 
 
 ### Video demonstrating the application
 
-![](/test_img/application_handling.gif)
+
 
 ## File description
 
