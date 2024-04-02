@@ -7,6 +7,7 @@ bg = "#fffbf0"
 n_bg = "#4cc7ff"
 bg_board = "grey"
 colors_difficult = ["#b3ff72", "#ffc160", "#cb1446", n_bg]
+colors_number = [bg, "#08daff", "#8bff91", "#e62961", "#1735a7", "#c72067", "#20d9d8", "#ef63e1", "#124650"]
 
 # Image
 img = os.path.join(os.path.dirname(os.path.abspath(__file__)), '..\img')

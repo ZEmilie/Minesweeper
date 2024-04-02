@@ -170,7 +170,9 @@ class GamePage(tk.Frame):
                         self.drain_full_case(row+1,column+1)
                 self.drain_full_case(row,column)
             else:
-                cell.config(text=self.matrix_mines[row][column], bg=mg.bg, relief=tk.FLAT)
+                nb = self.matrix_mines[row][column]
+                cell.config(text=nb, fg=mg.colors_number[nb],
+                            bg=mg.bg, relief=tk.FLAT)
                 self.update_empty_count()
 
     def left_click(self, row, column):
