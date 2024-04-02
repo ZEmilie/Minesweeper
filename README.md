@@ -32,7 +32,7 @@ The application is renewed with the chosen language. The language value is also 
 
 ### Video demonstrating the application
 
-https://github.com/ZEmilie/Minesweeper/assets/95745011/23547844-be15-4e5b-a93c-5e04d0bbb445
+https://github.com/ZEmilie/Minesweeper/assets/95745011/23547844-be15-4e5b-a93c-5e04d0bbb445  
 PS: Entire video in `test_img/application_handling.mp4`
 
 ## File description
