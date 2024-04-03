@@ -86,3 +86,11 @@ Download all the [files needed to run the application](#file-required) then laun
 ## Reference
 
 The images have been downloaded from https://icones8.fr/icons
+
+## Auteur
+
+Ce projet a été créé par [Emilie Zhu](https://github.com/emilie-zhu).
+
+## License
+
+This project is licensed under [MIT License](LICENSE).
